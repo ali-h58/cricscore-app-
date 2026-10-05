@@ -1,35 +1,45 @@
 name: Build CricScore APK
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20
-      - uses: actions/setup-java@v4
+          bun-version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - run: bun install
-      - run: bun run build
-      - run: bun add @capacitor/core @capacitor/cli @capacitor/android
-      - run: |
-          npx cap init CricScore com.ali.cricscore --web-dir=dist || true
+
+      - name: Install and Build Web
+        run: |
+          bun install
+          bun run build
+
+      - name: Build APK
+        run: |
+          bun add @capacitor/core @capacitor/cli @capacitor/android
+          npx cap init CricScore com.ali.cricscore --web-dir=dist --npm-client=bun || true
           npx cap add android || true
           npx cap copy android
-      - run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
-      - uses: actions/upload-artifact@v4
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: cricscore-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
