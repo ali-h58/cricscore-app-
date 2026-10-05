@@ -1,0 +1,6 @@
+{
+  "name": "CricScore Pro - Professional Cricket Scoreboard",
+  "description": "Professional Cricbuzz-style cricket scoring engine, ball-by-ball commentary, live win predictor, worm graphs, complete scorecard, PDF export & Flutter codebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

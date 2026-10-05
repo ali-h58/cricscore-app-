@@ -1,0 +1,29 @@
+name: cricket_scoreboard_pro
+description: "A complete professional 15-phase Cricket Scoreboard and live match analytics app built with Flutter and Dart with Null Safety."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  provider: ^6.1.1
+  fl_chart: ^0.66.0
+  pdf: ^3.10.7
+  printing: ^5.11.1
+  share_plus: ^7.2.1
+  shared_preferences: ^2.2.2
+  confetti: ^0.7.0
+  intl: ^0.19.0
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
